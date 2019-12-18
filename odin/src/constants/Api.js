@@ -1,7 +1,7 @@
 export const getApiRoot = () => {
   const localRoot = "http://localhost:3000";
   const ngrok = ""
-  const productionRoot = ""
+  const productionRoot = "http://ec2-35-182-11-126.ca-central-1.compute.amazonaws.com"
   return localRoot;
 };
 

@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react'
 import {getApiStatus} from './services/status/Status'
 import { connect } from 'react-redux'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import './App.css';
+import OrganizationContainer from './components/organization/containers/OrganizationContainer/OrganizationContainer'
+import OrganizationShow from './components/organization/OrganizationShow/OrganizationShow'
+import VenueShow from './components/venue/VenueShow/VenueShow'
 
 export const App = (props) => {
   
-  const initialize = () => {
-    checkApiStatus()
-  }
-
   const checkApiStatus = () => {
     getApiStatus().then(response => response.json()).then(object => {
       if (object.code === 200) {
@@ -26,15 +26,23 @@ export const App = (props) => {
     }
   }
   
-  initialize()
-
+  useEffect(() => {
+    checkApiStatus()
+  }, [])
 
   return (
-    <div className="App">
-      <div className="api-status">
-        {renderApiStatus()}
+    <BrowserRouter>    
+      <div className="App">
+        <div className="api-status">
+          {renderApiStatus()}
+        </div>
       </div>
-    </div>
+      <Switch>
+        <Route exact path='/organizations/:id' component={OrganizationShow}/>
+        <Route exact path='/organizations'  component={OrganizationContainer}/>
+        <Route exact path='/organizations/:organizationId/venues/:venueId'  component={VenueShow}/>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
