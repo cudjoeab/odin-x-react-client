@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import {getOrganizationsIndex} from '../../../../services/organization/Organization'
-import {OrganizationListItem} from '../../OrganizationListItem/OrganizationListItem'
+import OrganizationListItem from '../../OrganizationListItem/OrganizationListItem'
 
 export const OrganizationContainer = (props) => {
 

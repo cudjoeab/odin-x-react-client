@@ -3,7 +3,13 @@ const initialState = {
   organizations: [],
   organization: null, 
   venueClients: [], 
-  venueClientsOffset: 0
+  venueClientsOffset: 0,
+  breadCrumbs: [
+    {
+      path: '/organizations',
+      name: 'Organizations'
+    }  
+  ]
 }
 
 export const reducer = (state = initialState, action) => {
@@ -35,6 +41,19 @@ export const reducer = (state = initialState, action) => {
         ...state,
         venueClients: [],
         venueClientsOffset: 0
+      }
+    case 'addBreadCrumb': 
+      return {
+        ...state,
+        breadCrumbs: state.breadCrumbs.some(c => c.path === action.value.path) ? state.breadCrumbs : state.breadCrumbs.concat(action.value) 
+      }
+    case 'removeBreadCrumbAndChildren':
+      let indexToRemove = state.breadCrumbs.findIndex(c => c.path === action.value) + 1
+      let nextBreadCrumbs = JSON.parse(JSON.stringify(state.breadCrumbs))
+      let removed = indexToRemove > 0 ? nextBreadCrumbs.splice(indexToRemove, state.breadCrumbs.length -1) : state.breadCrumbs
+      return {
+        ...state, 
+        breadCrumbs: nextBreadCrumbs
       }
     default:
       return state

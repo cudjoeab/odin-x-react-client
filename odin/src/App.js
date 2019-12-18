@@ -6,9 +6,10 @@ import './App.css';
 import OrganizationContainer from './components/organization/containers/OrganizationContainer/OrganizationContainer'
 import OrganizationShow from './components/organization/OrganizationShow/OrganizationShow'
 import VenueShow from './components/venue/VenueShow/VenueShow'
+import Navbar from './components/Navbar/Navbar'
+import BreadCrumb from './components/BreadCrumb/BreadCrumb'
 
-export const App = (props) => {
-  
+export const App = (props) => {  
   const checkApiStatus = () => {
     getApiStatus().then(response => response.json()).then(object => {
       if (object.code === 200) {
@@ -16,27 +17,15 @@ export const App = (props) => {
       }
     })
   }
-
-  const renderApiStatus = () => {
-    let isApiDown = props.isApiDown
-    if (!isApiDown) {
-      return <span className="new badge blue" data-badge-caption="ODIN is active"></span>
-    } else {
-      return <span className="new badge red" data-badge-caption="ODIN is inactive"></span>
-    }
-  }
   
   useEffect(() => {
     checkApiStatus()
   }, [])
 
   return (
-    <BrowserRouter>    
-      <div className="App">
-        <div className="api-status">
-          {renderApiStatus()}
-        </div>
-      </div>
+    <BrowserRouter>  
+      <BreadCrumb></BreadCrumb>  
+      <Navbar></Navbar>
       <Switch>
         <Route exact path='/organizations/:id' component={OrganizationShow}/>
         <Route exact path='/organizations'  component={OrganizationContainer}/>
@@ -56,7 +45,6 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   return {
-    isApiDown: state.isApiDown,
   }
 }
 

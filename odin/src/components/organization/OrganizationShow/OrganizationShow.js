@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import {getOrganization} from '../../../services/organization/Organization'
-import {VenueListItem} from '../../venue/VenueListItem/VenueListItem'
+import VenueListItem from '../../venue/VenueListItem/VenueListItem'
 export const OrganizationShow = (props) => {
   let organizationId = props.match.params.id
   let organization = props.organization ? props.organization.attributes : null
