@@ -40,7 +40,7 @@ export const VenueShow = (props) => {
       <div className="container">
         <h5>Clients</h5>
         <ul class="collection">
-          <BottomScrollListener onBottom={() => { fetchClients(organizationId, venueId, 15, props.offset, null) }} offset={30}>
+          <BottomScrollListener onBottom={() => { fetchClients(organizationId, venueId, 15, props.offset, null) }} offset={250}>
               {renderClients()}
           </BottomScrollListener>
         </ul>
