@@ -8,6 +8,7 @@ import OrganizationShow from './components/organization/OrganizationShow/Organiz
 import VenueShow from './components/venue/VenueShow/VenueShow'
 import Navbar from './components/Navbar/Navbar'
 import BreadCrumb from './components/BreadCrumb/BreadCrumb'
+import SearchResultsContainer from './components/SearchResultsContainer/SearchResultsContainer'
 
 export const App = (props) => {  
   const checkApiStatus = () => {
@@ -26,6 +27,7 @@ export const App = (props) => {
     <BrowserRouter>  
       <BreadCrumb></BreadCrumb>  
       <Navbar></Navbar>
+      <SearchResultsContainer></SearchResultsContainer>
       <Switch>
         <Route exact path='/organizations/:id' component={OrganizationShow}/>
         <Route exact path='/organizations'  component={OrganizationContainer}/>

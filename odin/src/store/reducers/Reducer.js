@@ -4,6 +4,7 @@ const initialState = {
   organization: null, 
   venueClients: [], 
   venueClientsOffset: 0,
+  clientSearchResults: [],
   breadCrumbs: [
     {
       path: '/organizations',
@@ -54,6 +55,10 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state, 
         breadCrumbs: nextBreadCrumbs
+      }
+    case 'dispatchClientSearchResults':
+      return {
+        clientSearchResults: state.clientSearchResults.concat(action.value)
       }
     default:
       return state
