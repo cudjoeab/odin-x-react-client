@@ -9,7 +9,8 @@ export const SearchResultsContainer = (props) => {
        return <ClientListItem client={result}></ClientListItem>
       })
     } else {
-      return null
+      // Setting client to an empty array should clear the search bar 
+      return this.setState({client:[]})
     }
   }
   return (
